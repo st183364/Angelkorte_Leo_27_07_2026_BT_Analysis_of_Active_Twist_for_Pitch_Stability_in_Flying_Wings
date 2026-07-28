@@ -1,0 +1,9 @@
+aerosandbox==4.2.10
+dill==0.4.0
+matplotlib==3.11.1
+numpy
+ipykernel
+jupyterlab
+pandas==3.0.5
+scipy==1.18.0
+tqdm==4.67.1
