@@ -1,21 +1,21 @@
 ## Directory Structure
+```text
 .
-├── Case_Study/                      # Detailed validation of two selected wing configurations
-│   ├── bat_cg_pos_analysis.ipynb    # Detailed CG position limit analysis
-│   ├── bat_p_controller.ipynb       # Static proportional controller analysis
-│   ├── data/                        # Serialized (.pkl) wing models and simulation data
-│   └── VTFW_Lab4/                   # Python modules used by the case study notebooks
-│
-├── Parametric_Study/                # Large-scale parametric investigation
-│   ├── bat_symmetric_airfoils.ipynb # Parametric study for symmetric airfoils
-│   ├── bat_cambered_airfoils.ipynb  # Parametric study for cambered airfoils
-│   ├── bat_reflexed_airfoils.ipynb  # Parametric study for reflexed airfoils
-│   ├── data/                        # Serialized (.pkl) simulation results
-│   └── VTFW_Lab3/                   # Python modules used by the parametric study notebooks
-│
-├── requirements.txt                 # Required Python packages
-├── README.md                        # Installation and project documentation
-└── Analysis_of_Active_Twist_for_Pitch_Stability_in_Flying_Wings.pdf # Bachelor thesis
+├── Case_Study/
+│   ├── bat_cg_pos_analysis.ipynb
+│   ├── bat_p_controller.ipynb
+│   ├── data/
+│   └── VTFW_Lab4/
+├── Parametric_Study/
+│   ├── bat_symmetric_airfoils.ipynb
+│   ├── bat_cambered_airfoils.ipynb
+│   ├── bat_reflexed_airfoils.ipynb
+│   ├── data/
+│   └── VTFW_Lab3/
+├── requirements.txt
+├── README.md
+└── Analysis_of_Active_Twist_for_Pitch_Stability_in_Flying_Wings.pdf
+```
 
 ### `Case_Study/`
 
