@@ -62,7 +62,9 @@ Contains installation instructions and an overview of the project.
 
 ## Installation
 
-This project was tested with Python 3.13.
+This project was tested with Python 3.13. 
+
+> **Warning:** Running the notebooks with **Python 3.14** causes the Jupyter kernel to crash due to dependency incompatibilities. To ensure successful execution, please use **Python 3.13**.
 
 1. Ensure that Python is installed on your system.
 2. Open the project folder in your preferred IDE or open a terminal in the project directory.
