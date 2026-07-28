@@ -13,8 +13,7 @@
 │   ├── data/
 │   └── VTFW_Lab3/
 ├── requirements.txt
-├── README.md
-└── Analysis_of_Active_Twist_for_Pitch_Stability_in_Flying_Wings.pdf
+└── README.md
 ```
 
 ### `Case_Study/`
@@ -51,14 +50,6 @@ Parametric_Study/
 - **`bat_reflexed_airfoils.ipynb`** – Parametric study for reflexed NACA airfoils.
 - **`data/`** – Contains serialized simulation results (`.pkl` files) generated during the parametric study. These files are reused by the notebooks to avoid repeating computationally expensive VLM simulations.
 - **`VTFW_Lab3/`** – Python implementation of the analysis framework used by the notebooks. It contains modules for wing geometry generation, AeroSandbox interfaces, CG position limit analysis, data handling, plotting, and other helper utilities.
-
-### `requirements.txt`
-
-Lists the Python packages required to execute the notebooks.
-
-### `README.md`
-
-Contains installation instructions and an overview of the project.
 
 ## Installation
 
