@@ -20,12 +20,13 @@
 ### `Case_Study/`
 
 Contains all files required to reproduce the detailed case study of the two selected flying-wing configurations.
-
+```text
 Case_Study/
 ├── bat_cg_pos_analysis.ipynb
 ├── bat_p_controller.ipynb
 ├── data/
 └── VTFW_Lab4/
+```
 
 - **`bat_cg_pos_analysis.ipynb`** – Performs the detailed center of gravity (CG) position limit analysis for the selected wing configurations.
 - **`bat_p_controller.ipynb`** – Evaluates the static proportional twist controller and reproduces the pitching moment analyses presented in the thesis.
@@ -36,13 +37,14 @@ Case_Study/
 
 Contains all files required to reproduce the parametric study presented in the thesis.
 
+```text
 Parametric_Study/
 ├── bat_symmetric_airfoils.ipynb
 ├── bat_cambered_airfoils.ipynb
 ├── bat_reflexed_airfoils.ipynb
 ├── data/
 └── VTFW_Lab3/
-
+```
 
 - **`bat_symmetric_airfoils.ipynb`** – Parametric study for symmetric NACA airfoils.
 - **`bat_cambered_airfoils.ipynb`** – Parametric study for cambered NACA airfoils.
