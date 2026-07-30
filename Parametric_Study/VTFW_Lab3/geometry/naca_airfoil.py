@@ -104,8 +104,6 @@ class NACA4(Airfoil):
         airfoil_surface_points = upper_surface_points + lower_surface_points
         return airfoil_surface_points
     
-import math
-
 
 class NACA5(Airfoil):
     """
@@ -113,7 +111,7 @@ class NACA5(Airfoil):
 
     NACA LPQXX:
 
-        - L : design lift coefficient * (3/2)
+        - L : design lift coefficient, design_cl = 0.15 * L
         - P : position of maximum camber * 20
         - Q : 0 = normal camber
               1 = reflex camber
@@ -139,7 +137,10 @@ class NACA5(Airfoil):
     XX: float
 
     design_cl: float
+    camber_scale: float
     camber_pos: float
+
+    REFERENCE_DESIGN_CL = 0.30
 
     # Thickness distribution constants
     A_0 = 0.2969
@@ -179,41 +180,29 @@ class NACA5(Airfoil):
         self.XX = float(LPQXX[3:]) / 100
 
         self.design_cl = self.L * 0.15
+        self.camber_scale = self.design_cl / self.REFERENCE_DESIGN_CL
         self.camber_pos = self.P * 0.05
 
         self.name = f"naca{LPQXX}"
 
         # Load constants
         if self.Q == 0:
-            self.m, self.k1 = self.STANDARD_TABLE[self.P]
+            self.m, base_k1 = self.STANDARD_TABLE[self.P]
         else:
-            self.m, self.k1, self.k2k1 = self.REFLEX_TABLE[self.P]
+            self.m, base_k1, self.k2k1 = self.REFLEX_TABLE[self.P]
 
-    # ==========================================================
-    # Mean camber line
-    # ==========================================================
+        self.k1 = base_k1 * self.camber_scale
+
 
     def __mean_camber_standard_front(self, x):
-        return (
-            (self.k1 / 6)
-            * (
-                x**3
-                - 3 * self.m * x**2
-                + self.m**2 * (3 - self.m) * x
-            )
-        )
+        return ((self.k1 / 6)* (x**3 - 3 * self.m * x**2 + self.m**2 * (3 - self.m) * x))
 
     def __mean_camber_standard_back(self, x):
         return (self.k1 / 6) * self.m**3 * (1 - x)
 
     def __mean_camber_reflex_front(self, x):
         return (
-            (self.k1 / 6)
-            * (
-                (x - self.m) ** 3
-                - self.k2k1 * (1 - self.m) ** 3 * x
-                - self.m**3 * x
-                + self.m**3
+            (self.k1 / 6)* ((x - self.m) ** 3- self.k2k1 * (1 - self.m) ** 3 * x- self.m**3 * x                + self.m**3
             )
         )
 
@@ -240,9 +229,6 @@ class NACA5(Airfoil):
                 return self.__mean_camber_reflex_front(x)
             return self.__mean_camber_reflex_back(x)
 
-    # ==========================================================
-    # Camber gradients
-    # ==========================================================
 
     def __mean_camber_gradient_standard_front(self, x):
         return (
@@ -289,9 +275,6 @@ class NACA5(Airfoil):
                 return self.__mean_camber_gradient_reflex_front(x)
             return self.__mean_camber_gradient_reflex_back(x)
 
-    # ==========================================================
-    # Geometry helpers
-    # ==========================================================
 
     def __omega(self, x):
         return math.atan(self.__mean_camber_gradient(x))
@@ -308,9 +291,7 @@ class NACA5(Airfoil):
             )
         )
 
-    # ==========================================================
-    # Surface coordinates
-    # ==========================================================
+
 
     def upper_surface_x(self, x):
         return x - self.thickness_distribution(x) * math.sin(self.__omega(x))
@@ -328,9 +309,6 @@ class NACA5(Airfoil):
             self.thickness_distribution(x) * math.cos(self.__omega(x))
         )
 
-    # ==========================================================
-    # Point generation
-    # ==========================================================
 
     def get_lin_dist_surface_points(self, number_points: int):
 
